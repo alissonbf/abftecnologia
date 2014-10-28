@@ -1,0 +1,132 @@
+        {% load static from staticfiles %}
+        <!-- Navigation Menu -->
+        <div class="container-fluid navigation-menu">
+        <div class="container" >
+            <div class="row">
+                <!-- Logo -->
+                <div class="col-xs-12 col-sm-12 col-md-2">
+                    <!-- Logo Normal -->
+                    <div class="logo hidden-xs hidden-sm">
+                        <a href="{% url 'home_index' %}" class="">
+                            <img src="{% static "site/images/theme/logo.png" %}" alt="Logo" />
+                        </a>
+                    </div>
+                    <!-- Logo Retina -->
+                    <div class="logo-xtwo hidden-lg hidden-md">
+                        <a href="{% url 'home_index' %}" class="">
+                            <img src="{% static "site/images/theme/logo-2x.png" %}" alt="Logo" />
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Menu -->
+                <div class="col-xs-12 col-sm-12 col-md-10">
+
+                    <ul class="nill-box-menu nill-box-menu-anim-flip nill-box-menu-response-to-icons">
+                        <!-- Home Page -->
+                        <li class="hidden-xs">
+                            <a href="{% url 'home_index' %}">
+                                <i class="fa fa-single fa-home"></i>
+                            </a>
+                        </li>
+                       
+                        <!-- Portifolio -->
+                        <li aria-haspopup="true">
+                            <a href="{% url 'portifolio_index' %}">
+                                <i class="fa fa-briefcase"></i>
+                                Portifolio</a>                            
+                        </li>
+
+                        <!-- Promoções -->
+                        <li aria-haspopup="true">
+                            <a href="{% url 'biblioteca_index' %}">
+                                <i class="fa fa-book"></i>
+                                Biblioteca</a>                            
+                        </li>
+                        
+                        <!-- Blog -->
+                        <li aria-haspopup="true">
+                            <a href="{% url 'blog_index' %}">
+                                <i class="fa fa-file"></i>
+                                Blog</a>                            
+                        </li>
+
+                        <!-- Contato -->
+                        <li aria-haspopup="true">
+                            <a href="{% url 'contato_index' %}">
+                                <i class="fa fa-envelope"></i>
+                                Contato</a>                            
+                        </li>
+                        
+
+                        <!-- search form 
+                        <li aria-haspopup="true" class="right">
+                            <a href="#_">
+                                <i class="fa fa-single fa-search"></i>
+                            </a>
+                            <div class="grid-container5">
+                                <form action="#">
+                                    <fieldset>
+                                        <section>
+                                            <label class="input">
+                                                <i class="fa fa-append fa-search"></i>
+                                                <input type="text" placeholder="Search Site...">
+                                            </label>
+                                        </section>
+                                        <button type="submit" class="btn btn-primary button">Search</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </li>
+                        <!--/ search form -->
+                        
+                        <!-- login -->                                                
+                            {% if social_auth.associated or user.is_authenticated %}
+                                <li aria-haspopup="true" class="right">                                     
+                                    <a href="{% url "cliente_index" %}">
+                                        <i class="fui-user"></i>
+                                        Minha Área
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class="right">                                     
+                                    <a href="{% url "cliente_sair" %}">
+                                        <i class="fui-exit"></i>
+                                        Sair
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li aria-haspopup="true" class="right">                            
+                                    <a href="{% url "socialauth_begin" "facebook" %}">
+                                        <i class="fa fa-facebook"></i>
+                                        Login com o Facebook
+                                    </a>
+                                </li>
+                            {% endif %}
+                                
+                        <!--/ login -->
+
+                        <!-- search form -->
+                        <li aria-haspopup="true" class="visible-xs">
+                            <a href="#_">
+                                <i class="fa fa-single fa-search li-last"></i>
+                            </a>
+                            <div class="grid-container5">
+                                <form action="#">
+                                    <fieldset>
+                                        <section>
+                                            <label class="input">
+                                                <i class="fa fa-append fa-search"></i>
+                                                <input type="text" placeholder="Search Site...">
+                                            </label>
+                                        </section>
+                                        <button type="submit" class="btn btn-primary button">Search</button>
+                                    </fieldset>
+                               </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix nav-finish"></div>

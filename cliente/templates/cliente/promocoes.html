@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% load cropping %}
+
+{% block title %} {{ block.super }} Minha Área {% endblock %}
+
+{% block extracss %}{% endblock extracss %}
+
+{% block content %}
+
+    <!-- Blog Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>Minhas Promoções</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Blog -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-fourteen">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for campanha in campanhas %}
+                        <div class="alert alert-info">                        
+                            <h4>{{ campanha.titulo }}</h4>
+                            <p>{{ campanha.texto }}</p>
+                            
+                            <p>{{ campanha.video|safe }}</p>
+                            <a class="btn btn-success btn-wide" target="_blank" href="{{ campanha.brinde.arquivo.url }}">Download Brinde</a>                                                
+                        </div>
+                        <hr/>
+                    {% endfor %}                                                                                 
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                   {% include "cliente/menu.html" %}                                        
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock content%}
+
+{% block extrajs %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50743006-1', 'abftecnologia.com.br');
+      ga('send', 'pageview');
+
+    </script>
+{% endblock extrajs %}

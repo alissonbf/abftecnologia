@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block seotags %}
+    <meta name="description" content="Download de ebooks, whitepaper e infográficos sobre como usar a internet para ajudar seu negócio." /> 
+    <meta name="keywords" content="website, desenvolvimento, site, marketing de relacionamento, marketing de conteudo, programação, abf, tecnologia, paracatu, sp, são paulo, minas gerais, rio de janeiro, belo horizonte, empresários, estratégica, serviço, empresário,"/>
+    <meta name="robots" content="index, follow">
+{% endblock %}
+
+{% block title %} Biblioteca | {{ block.super }}{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static "site/rs-plugin/css/settings.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "site/showbizpro/css/settings.css" %}" media="screen" />
+{% endblock extracss %}
+
+{% block content %}
+
+    <!-- Portifolio Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>Biblioteca</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-twentyteen">
+            <div class="row">
+                <!-- FILTER CONTROLS -->
+                <div class="col-xs-12 col-md-12">
+                    <div class="portfolio-filter-one controls">
+                        <ul>
+                            <li class="btn btn-primary filter active" data-filter="all">All</li>
+                            {% for categoria in categorias %}
+                                <li class="btn btn-primary filter" data-filter="{{ categoria.slug }}">{{ categoria.titulo }}</li>                                
+                            {% endfor %}    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio List -->
+    <div class="container-fluid modul-space-twentyone">
+        <div id="Grid" class="row">
+            {% for artigo in artigos %}                        
+                <!-- Item -->
+                <div class="col-xs-12 col-sm-6 col-md-3 mix {{ artigo.categoria.slug }} mix_all ">
+                    <div class="portlio-list" data-cat="1" style="  display: inline-block; opacity: 1;">
+                        <div class="grid cs-style-2">
+                            <figure>
+                                <img src="{{ artigo.imagem.url }}" class="portlio-list-img" alt="{{ artigo.titulo }}">
+                                <figcaption>
+                                    <div class="image-buttons hidden-xs">                                                                                    
+                                        <a href="{{ artigo.get_absolute_url }}" class="btn btn-primary">
+                                            <i data-toggle="tooltip" data-placement="top" title="Leia Mais" class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <h6>
+                            <a href="{{ artigo.get_absolute_url }}" class="">
+                                {{ artigo.titulo }}
+                            </a>
+                        </h6>                        
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+            {% endfor %}   
+        </div>
+    </div>
+{% endblock content%}
+
+{% block extrajs %}
+    <script type="text/javascript">
+        $(function() {
+            $('#Grid').mixitup();
+        });
+    </script>
+
+    <script src="{% static "site/rs-plugin/js/jquery.themepunch.plugins.min.js" %}"></script>
+    <script src="{% static "site/rs-plugin/js/jquery.themepunch.revolution.min.js" %}"></script>
+    <script src="{% static "site/showbizpro/js/jquery.themepunch.showbizpro.min.js" %}"></script>
+{% endblock extrajs %}

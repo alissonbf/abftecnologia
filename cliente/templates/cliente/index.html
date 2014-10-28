@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% load cropping %}
+
+{% block title %} Minha Área | {{ block.super }} {% endblock %}
+
+{% block extracss %}{% endblock extracss %}
+
+{% block content %}
+
+    <!-- Blog Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>Olá, {{ user.first_name }} {{ user.last_name }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Blog -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-fourteen">
+            <div class="row">
+                <div class="col-md-8">
+                    <h5 class="text-center" >Bem-vindo, {{ user.first_name }} {{ user.last_name }}</h5>
+                    <div class="blog-slider-two">                    
+                        <img src="{% static "site/images/theme/home_cliente_800x500.jpg" %}" class="blog-slider-list-img" alt="img04">                    
+                    </div>
+                    
+                   
+                   
+                   
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                   {% include "cliente/menu.html" %}                                        
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock content%}
+
+{% block extrajs %}{% endblock extrajs %}

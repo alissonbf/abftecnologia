@@ -1,0 +1,40 @@
+    {% load static from staticfiles %}
+    
+    <div class="container-fluid module-background-one modul-bt-one">
+        <div class="container modul-space-eight">
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6 hidden-lg hidden-md">
+                    <div class="advert-two-image clearfix">
+                        <img src="{% static "site/images/theme/advert6.png" %}" alt="Advert" />
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6">
+                    <div class="advert-one advert-phone mso-icon-seven-space">
+                        <h1>Vantagens para seu negócio</h1>
+                        
+                        {% for vantagem in vantagens %}
+                            <div class="modul-services-two mso-icon-seven">
+                                <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-four-space pull-left">
+                                    <i class="fa {{ vantagem.icone }} fa-2x hi-icon"></i>
+                                </div>
+                                <p>
+                                    <strong>{{ vantagem.titulo }}</strong>
+                                </p>
+                                <p>{{ vantagem.texto }}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        {% endfor %}                           
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 hidden-sm hidden-xs">
+                    <div class="advert-two-image clearfix">
+                        <img src="{% static "site/images/theme/advert6.png" %}" alt="Advert" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

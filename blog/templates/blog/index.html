@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% load cropping %}
+
+{% block seotags %}
+    <meta name="description" content="Encontre tutoriais sobre desenvolvimento web, django e python. Aprenda tecnicas de digitais para triplicar suas vendas." /> 
+    <meta name="keywords" content="website, desenvolvimento, site, marketing de relacionamento, marketing de conteudo, programação, abf, tecnologia, paracatu, sp, são paulo, minas gerais, rio de janeiro, belo horizonte, empresários, estratégica, serviço, empresário,"/>
+    <meta name="robots" content="index, follow">
+{% endblock %}
+
+{% block title %} Blog | {{ block.super }}{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static "site/rs-plugin/css/settings.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "site/showbizpro/css/settings.css" %}" media="screen" />        
+{% endblock extracss %}
+
+{% block content %}
+    <!-- Blog Header -->
+    <div class="container-fluid parallax-three modul-bt-one">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>Blog</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Blog -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-fourteen">
+            <div class="row">
+                <!-- Blog Post -->
+                <div class="col-md-8">                    
+                    {% for post in posts %}
+                        <div class="blog-slider-two">
+                            <div class="grid cs-style-3">
+                                <figure>
+                                    <div class="blog-date-circle">
+                                        <h5>{{ post.created_on|date:"d" }}</h5>
+                                        <p>{{ post.created_on|date:"M" }}</p>
+                                    </div>
+                                    <img src="{% cropped_thumbnail post cropping %}" class="blog-slider-list-img" alt="{{ post.titulo }}">
+                                    <figcaption>
+                                        <div class="image-buttons-three">
+                                            <a data-toggle="modal" data-target="#{{ post.slug }}-image" class="btn btn-primary">
+                                                <i data-toggle="tooltip" data-placement="top" title="Foto" class="fa fa-camera"></i>
+                                            </a>                                            
+                                            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">
+                                                <i data-toggle="tooltip" data-placement="top" title="Post Completo" class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="blog-slider-list">
+                                <h3>
+                                    <a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a>
+                                </h3>
+                                <div class="blog-info hidden-xs">
+                                    <small>
+                                        <i class="fa fa-pencil blog-mini-icon"></i>por
+                                        <a href="{% url 'blog_autor' post.autor.username %}">
+                                            {{ post.get_user_firstname }}
+                                        </a>                                        
+                                        <i class="fa fa-tag blog-mini-icon-two"></i>                                        
+                                        {% for tag in post.tags.split %}
+                                            <a href="{% url 'blog_tag' tag %}">
+                                                {{ tag }}
+                                            </a>,
+                                        {% endfor %}
+                                    </small>
+                                </div>
+                                {{ post.descricao|linebreaks }}                                                                
+                            </div>
+                        </div>
+                        <!-- Picture Modal Box -->
+                        <div class="modal fade" id="{{ post.slug }}-image" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">{{ post.titulo }}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="{{ post.miniatura.url }}" class="portlio-list-img" alt="img04">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    {% endfor %}
+                </div>
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                    <!-- Social Sidebar -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="hero-widget">
+                                <g:plusone size="tall"></g:plusone>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="hero-widget">
+                                <script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-counter="top"></script>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="hero-widget">
+                                <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                            </div>
+                        </div>                        
+                        <div class="col-md-6">
+                            <div class="hero-widget">
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-via="abftecnologia" data-lang="pt">Tweetar</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            </div>
+                        </div>                        
+                    </div>                    
+                    <!-- Categories -->
+                    <div class="sidebar">
+                        <h6>
+                            <i class="fa fa-align-justify sidebar-icon"></i>Categorias</h6>
+                        <ul class="nav nav-list sidebar-categories">
+                            <li {% if 'home' == slug %} class="active" {% endif %}>
+                                <a href="{% url 'blog_index' %}">
+                                    Todos os posts
+                                </a>
+                            </li>
+                            {% for categoria in categorias %}
+                                <li {% if categoria.slug == slug %} class="active" {% endif %}>
+                                    <a href="{{ categoria.get_absolute_url }}">
+                                        {{ categoria.titulo }}                                                                        
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Navi -->
+    <div class="container-fluid module-background-one modul-bt-one">
+        <div class="container modul-space-fifteen">
+            <div class="row">
+                <div class="col-md-12 page-navi">
+                    <div class="pagination pagination-default">
+                        {% if posts.has_previous %}
+                            <a href="?pagina={{ posts.previous_page_number }}" class="btn btn-default previous">
+                                <span class="fui-arrow-left"></span>
+                                ANTERIOR
+                            </a>
+                        {% endif %}    
+                        <ul>
+                            {% for pagina_numero in paginacao.page_range %}                                
+                                <li {% if posts.number == pagina_numero %} class="active" {% endif %}>
+                                    <a href="{{ request.path }}?pagina={{ pagina_numero }}">
+                                        {{ pagina_numero }}
+                                    </a>
+                                </li>
+                            {% endfor %}                            
+                        </ul>
+                        {% if posts.has_next %}
+                            <a href="?pagina={{ posts.next_page_number }}" class="btn btn-default next">
+                                PRÓXIMO
+                                <span class="fui-arrow-right"></span>
+                            </a>
+                        {% endif %}    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content%}
+
+{% block extrajs %}
+
+      
+{% endblock extrajs %}

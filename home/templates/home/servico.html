@@ -1,0 +1,19 @@
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-big-space phone-space-one">
+            <div class="row">
+                <!-- Servicos -->
+                {% for servico in servicos %}
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="modul-services-one mso-icon modul-phone-two modul-bo-five modul-bb-bold-five">
+                            <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-space mso-position">
+                                <i class="fa {{ servico.icone }} fa-2x hi-icon"></i>
+                            </div>
+                            <h6>{{ servico.titulo }}</h6>
+                            <p class="ms-seven-p">{{ servico.texto }}</p>
+                            <a href="{% url 'contato_index' %}" target="_blank" class="btn btn-primary btn-sm bsm-seven">Orçamento</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>

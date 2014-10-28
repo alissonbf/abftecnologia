@@ -1,0 +1,110 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- SEO Meta Tags-->
+        {% block seotags %}
+            <meta name="description" content="Desenvolvemos sistemas web que apoiam os empresários no uso da tecnologia de forma estratégica dentro de suas empresas e em seus negócios." /> 
+            <meta name="keywords" content="website, desenvolvimento, site, marketing de relacionamento, marketing de conteudo, programação, abf, tecnologia, paracatu, sp, são paulo, minas gerais, rio de janeiro, belo horizonte, empresários, estratégica, serviço, empresário,"/>
+            <meta name="robots" content="index, follow">
+        {% endblock %}                    
+        <title>{% block title %}ABF Tecnologia | Tecnologia estratégica a serviço do empresário{% endblock %}</title>
+        
+        <!-- Favicon -->        
+        <link rel="shortcut icon" href="{% static "site/images/favicon.ico" %}">
+            
+        <!-- CSS -->
+        <link href="{% static "site/bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+        <link href="{% static "site/css/ui.css" %}" rel="stylesheet">                
+        <link href="{% static "site/css/base.css" %}" rel="stylesheet">
+        <link href="{% static "site/css/style-blue.css" %}" rel="stylesheet">
+    
+        {% block extracss %}{% endblock %}        
+        <!-- Font Awesome -->
+        <link href="{% static "site/css/font-awesome.min.css" %}" rel="stylesheet">
+        
+        <!-- JQUERY -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=132416830300715";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        
+    </head>
+    
+    <body>                
+        <!-- Bloco Conteudo -->
+        {% block content %}{% endblock %}
+        
+        <!-- Rodape -->    
+        <div class="bottom-menu bottom-menu-inverse">
+            <div class="container modul-space-twentyseven">
+                <div class="row">
+                    <div class="col-md-1">
+                        
+                    </div>
+    
+                    <div class="col-md-11">
+                        <ul class="bottom-links pull-right hidden-sm hidden-xs">
+                            <li>
+                                
+                            </li>
+                            <li>
+                                
+                            </li>
+                            <li class="active">
+                                
+                            </li>
+                            <li>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        
+          ga('create', 'UA-50743006-1', 'abftecnologia.com.br');
+          ga('require', 'displayfeatures');
+          ga('send', 'pageview');
+        
+        </script>
+                
+        {% block extrajs %}{% endblock %}
+        <!-- Load JS here for greater good -->
+        <script src="{% static "site/js/jquery-ui-1.10.3.custom.min.js" %}"></script>
+        <script src="{% static "site/js/jquery.ui.touch-punch.min.js" %}"></script>
+        <script src="{% static "site/js/bootstrap.min.js" %}"></script>
+        <script src="{% static "site/js/bootstrap-select.js" %}"></script>
+        <script src="{% static "site/js/bootstrap-switch.js" %}"></script>
+        <script src="{% static "site/js/flatui-checkbox.js" %}"></script>
+        <script src="{% static "site/js/flatui-radio.js" %}"></script>
+        <script src="{% static "site/js/jquery.tagsinput.js" %}"></script>
+        <script src="{% static "site/js/jquery.placeholder.js" %}"></script>
+        <script src="{% static "site/js/bootstrap-typeahead.js" %}"></script>
+        <script src="{% static "site/js/application.js" %}"></script>
+        <script src="{% static "site/js/modernizr.custom.js" %}"></script>
+        <script src="{% static "site/js/toucheffects.js" %}"></script>
+        <script src="{% static "site/js/jquery.mixitup.js" %}"></script>
+        <script src="{% static "site/rs-plugin/js/jquery.themepunch.plugins.min.js" %}"></script>
+        <script src="{% static "site/rs-plugin/js/jquery.themepunch.revolution.min.js" %}"></script>
+        <script src="{% static "site/showbizpro/js/jquery.themepunch.showbizpro.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "site/js/jquery.scrollUp.js" %}"></script>
+        <script src="{% static "site/js/theme.js" %}"></script>                        
+    </body>
+</html>

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% load cropping %}
+
+{% block seotags %}
+    <meta name="description" content="Veja o site que fizemos para este cliente, você terá um site com esse nivel de qualidade." /> 
+    <meta name="keywords" content="website, desenvolvimento, site, marketing de relacionamento, marketing de conteudo, programação, abf, tecnologia, paracatu, sp, são paulo, minas gerais, rio de janeiro, belo horizonte, empresários, estratégica, serviço, empresário,"/>
+    <meta name="robots" content="index, follow">
+{% endblock %}
+
+{% block title %} {{ item.titulo }} | Portifolio | {{ block.super }} {% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static "site/rs-plugin/css/settings.css" %}" />    
+    <link rel="stylesheet" type="text/css" href=""{% static "site/showbizpro/css/settings.css" %}" media="screen" />
+{% endblock extracss %}
+
+{% block content %}
+
+    <!-- Blog Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>{{ item.titulo }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   <!-- About Us -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-twentythree">
+            <div class="row">                
+                <div class="col-md-6">
+                    <!-- Post Detail -->
+                    <div class="post-detail">
+                        <div class="blog-slider-list post-page-list portfolio-single-title phone-space-eight">
+                            <h1>Nosso trabalho</h1>
+                        </div>
+                        
+                        {{ item.texto|safe }}
+                        
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+           
+                <div class="col-md-6">
+                    <!-- Post Detail -->
+                    <div class="post-detail">
+                        <div class="blog-slider-list post-page-list portfolio-single-title phone-space-eight">
+                            <h1>Peça um orçamento</h1>
+                        </div>
+
+                        <div class="modul-services-left mso-icon-three">
+                            <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-three-space">
+                                <i class="fa fa-thumbs-up fa-2x hi-icon hi-icon-two"></i>
+                            </div>
+                            <p>Entre em contato conosco, vamos construir uma ferramenta que ajudará sua você a tirar do papel ou executar com perfeição aquela estratégia que você está pensando em fazer.</p>
+                            
+                            <a href="{% url 'contato_index' %}" class="btn btn-primary btn-lg">Orçamento</a>
+                        </div>                                                
+                    </div>
+                    <div class="clearfix"></div>                                                            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Navi -->
+    <div class="container-fluid module-background-one modul-bt-one">
+        <div class="container modul-space-fifteen">
+            <div class="row"></div>
+        </div>
+    </div>
+
+
+{% endblock content%}
+
+{% block extrajs %} {% endblock extrajs %}

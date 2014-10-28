@@ -1,0 +1,7 @@
+django<=1.6
+Pillow
+django-grappelli<=2.5.4
+easy-thumbnails 
+django-image-cropping
+django-social-auth
+django-smtp-ssl

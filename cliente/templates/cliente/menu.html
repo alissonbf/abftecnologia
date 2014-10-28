@@ -1,0 +1,23 @@
+    <!-- Categories -->
+    <div class="sidebar">
+        <h6>
+            <i class="fa fa-align-justify sidebar-icon"></i>Menu
+        </h6>
+        <ul class="nav nav-list sidebar-categories">
+           <li {% if flag == 'home_usuario' %} class="active" {% endif %}>
+                <a href="{% url "cliente_index" %}">
+                    Minha Área
+                </a>
+            </li>
+            <li {% if flag == 'perfil_usuario' %} class="active" {% endif %}>
+                <a href="{% url "cliente_perfil" %}">
+                    Meu Perfil                                    
+                </a>
+            </li>
+            <li {% if flag == 'comentarios_usuario' %} class="active" {% endif %}>
+                <a href="{% url "cliente_comentarios" %}">
+                    Meus Comentários                              
+                </a>
+            </li>
+        </ul>
+    </div>

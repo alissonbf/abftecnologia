@@ -1,0 +1,141 @@
+{% extends "base_landingpage.html" %}
+
+{% load static from staticfiles %}
+
+{% block seotags %}
+    <meta name="description" content="{{ artigo.descricao }}" /> 
+    <meta name="keywords" content="website, desenvolvimento, site, marketing de relacionamento, marketing de conteudo, programação, abf, tecnologia, paracatu, sp, são paulo, minas gerais, rio de janeiro, belo horizonte, empresários, estratégica, serviço, empresário,"/>
+    <meta name="robots" content="index, follow">
+{% endblock %}
+
+{% block title %} {{ artigo.titulo }} | {{ block.super }}{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static "site/rs-plugin/css/settings.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "site/showbizpro/css/settings.css" %}" media="screen" />
+{% endblock extracss %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="big-title">
+                    <h1>{{ artigo.titulo }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Advert Module Four -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-eight">
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6">
+                    {% if artigo.codigo %}                                        
+                        <div class="advert-two-image clearfix">
+                            {{ artigo.codigo|safe }}                        
+                        </div>
+                    {% else %}
+                        <div class="advert-one">
+                            <h2>{{ artigo.titulo }}</h2>
+                            <p>{{ artigo.descricao }}</p>                        
+                            <img src="{{ artigo.imagem.url }}"  class="img-responsive center-block" alt="{{ artigo.titulo }}">                                                
+                        </div>
+                    {% endif %}
+                    
+                </div>
+
+                <div class="col-xs-12 col-md-6">
+                    <div class="advert-one advert-phone mso-icon-seven-space">
+                        <h1>Cadastre-se para fazer download do {{ artigo.categoria.titulo }}</h1>
+                        <form action="" method="post">{% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="form-group">
+                                {% if form.nome.errors %}
+                                    {% for error in form.nome.errors %}                                                
+                                        <div class="alert alert-error">
+                                            <button type="button" class="close fui-cross" data-dismiss="alert"></button>                                                    
+                                            {{ error }}
+                                        </div>                                                 
+                                    {% endfor %}
+                                {% endif %}                                
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fui-user"></span>
+                                    </span>
+                                    {{ form.nome }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {% if form.email.errors %}
+                                    {% for error in form.email.errors %}                                                
+                                        <div class="alert alert-error">
+                                            <button type="button" class="close fui-cross" data-dismiss="alert"></button>                                                    
+                                            {{ error }}
+                                        </div>                                                 
+                                    {% endfor %}
+                                {% endif %}                                                                
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fui-mail"></span>
+                                    </span>
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {% if form.empresa.errors %}
+                                    {% for error in form.empresa.errors %}                                                
+                                        <div class="alert alert-error">
+                                            <button type="button" class="close fui-cross" data-dismiss="alert"></button>                                                    
+                                            {{ error }}
+                                        </div>                                                 
+                                    {% endfor %}
+                                {% endif %}                                                                
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fui-home"></span>
+                                    </span>
+                                    {{ form.empresa }}
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                {% if form.site.errors %}
+                                    {% for error in form.site.errors %}                                                
+                                        <div class="alert alert-error">
+                                            <button type="button" class="close fui-cross" data-dismiss="alert"></button>                                                    
+                                            {{ error }}
+                                        </div>                                                 
+                                    {% endfor %}
+                                {% endif %}                                                                
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon">
+                                        <span class="fui-link"></span>
+                                    </span>
+                                    {{ form.site }}
+                                </div>
+                            </div>                            
+                            <div class="clearfix"></div>
+                            <!-- Three -->
+                            <div class="modul-services-two mso-icon-seven">                            
+                                <p>*Prometemos não utilizar suas informações de contato para enviar qualquer tipo de SPAM.</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group pull-right">
+                                <button class="btn btn-primary advert-button-seven">Download</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock content%}
+
+{% block extrajs %} {% endblock extrajs %}

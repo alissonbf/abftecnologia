@@ -1,0 +1,50 @@
+   {% load static from staticfiles %}
+   
+   <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-eight">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-xs-12 col-md-8">
+                    <div class="advert-two-title">
+                        <h1>Nosso ciclo de trabalho</h1>
+                        <p>Nosso ciclo de trabalho, prevê um atendimento continuo para que nossos serviços possam sempre ajuda-lo a melhorar seu negócio.</p>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="clearfix"></div>
+
+                <div class="col-xs-12 col-md-4 clearfix">
+                    {% for trabalho in trabalhos|slice:":3" %}
+                        <div class="modul-services-three mso-icon-eight">
+                            <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-space pull-right">
+                                <i class="fa {{ trabalho.icone }} hi-icon"></i>
+                            </div>
+                            <h6>{{ trabalho.titulo }}</h6>
+                            <p>{{ trabalho.texto }}</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-xs-12 col-md-4 clearfix hidden-sm hidden-xs">
+                    <div class="advert-big-image">
+                        <img src="{% static "site/images/theme/advert2.png" %}" alt="Image" />
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-4 clearfix">
+                    {% for trabalho in trabalhos|slice:"3:" %}
+                        <div class="modul-services-two mso-icon-eight">
+                            <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-space pull-left">
+                                <i class="fa {{ trabalho.icone }} hi-icon"></i>
+                            </div>
+                            <h6>{{ trabalho.titulo }}</h6>
+                            <p>{{ trabalho.texto }}</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>

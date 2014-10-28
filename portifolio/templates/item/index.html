@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% load cropping %}
+
+{% block seotags %}
+    <meta name="description" content="Veja os sites que fizemos para nossos clientes, você terá um site com esse nivel de qualidade." /> 
+    <meta name="keywords" content="website, desenvolvimento, site, marketing de relacionamento, marketing de conteudo, programação, abf, tecnologia, paracatu, sp, são paulo, minas gerais, rio de janeiro, belo horizonte, empresários, estratégica, serviço, empresário,"/>
+    <meta name="robots" content="index, follow">
+{% endblock %}
+
+{% block title %} Portifolio | {{ block.super }}{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static "site/rs-plugin/css/settings.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "site/showbizpro/css/settings.css" %}" media="screen" />
+{% endblock extracss %}
+
+{% block content %}
+
+    <!-- Portifolio Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>Portifolio</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-twentyteen">
+            <div class="row">
+                <!-- FILTER CONTROLS -->
+                <div class="col-xs-12 col-md-12">
+                    <div class="portfolio-filter-one controls">
+                        <ul>
+                            <li class="btn btn-primary filter active" data-filter="all">All</li>
+                            {% for categoria in categorias %}
+                                <li class="btn btn-primary filter" data-filter="{{ categoria.id }}">{{ categoria.titulo }}</li>                                
+                            {% endfor %}    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio List -->
+    <div class="container-fluid modul-space-twentyone">
+        <div id="Grid" class="row">
+            {% for item in itens %}                        
+                <!-- Item -->
+                <div class="col-xs-12 col-sm-6 col-md-3 mix {{ item.categoria.id }} mix_all ">
+                    <div class="portlio-list" data-cat="1" style="  display: inline-block; opacity: 1;">
+                        <div class="grid cs-style-2">
+                            <figure>
+                                <img src="{% cropped_thumbnail item cropping %}" class="portlio-list-img" alt="img04">
+                                <figcaption>
+                                    <div class="image-buttons hidden-xs">
+                                        <a data-toggle="modal" data-target="#{{ item.id }}" class="btn btn-primary">
+                                            <i data-toggle="tooltip" data-placement="top" title="Foto Completa" class="fa fa-camera"></i>
+                                        </a>                                            
+                                        <a href="{{ item.get_absolute_url }}" class="btn btn-primary">
+                                            <i data-toggle="tooltip" data-placement="top" title="Leia Mais" class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <a href="{{ item.get_absolute_url }}" target="_blank">
+                            <h6>                            
+                               {{ item.titulo }}                                                    
+                            </h6>
+                        </a>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+                <!-- Picture Modal Box -->
+                <div class="modal fade" id="{{ item.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">{{ item.titulo }}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <img src="{{ item.miniatura.url }}" class="portlio-list-img" alt="img04">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}   
+        </div>
+    </div>
+
+    <!-- Page Navi -->
+    <div class="container-fluid module-background-one modul-bt-one">
+        <div class="container modul-space-fifteen">
+            <div class="row">
+                <div class="col-md-12 page-navi text-center">
+                    <div class="pagination pagination-default">
+                        {% if itens.has_previous %}
+                            <a href="?pagina={{ itens.previous_page_number }}" class="btn btn-default previous">
+                                <span class="fui-arrow-left"></span>
+                                ANTERIOR
+                            </a>
+                        {% endif %}    
+                        <ul>
+                            {% for pagina_numero in paginacao.page_range %}                                
+                                <li {% if itens.number == pagina_numero %} class="active" {% endif %}>
+                                    <a href="{{ request.path }}?pagina={{ pagina_numero }}">
+                                        {{ pagina_numero }}
+                                    </a>
+                                </li>
+                            {% endfor %}                            
+                        </ul>
+                        {% if itens.has_next %}
+                            <a href="?pagina={{ itens.next_page_number }}" class="btn btn-default next">
+                                PRÓXIMO
+                                <span class="fui-arrow-right"></span>
+                            </a>
+                        {% endif %}    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content%}
+
+{% block extrajs %}
+    <script type="text/javascript">
+        $(function() {
+            $('#Grid').mixitup();
+        });
+    </script>
+
+    <script src="{% static "site/rs-plugin/js/jquery.themepunch.plugins.min.js" %}"></script>
+    <script src="{% static "site/rs-plugin/js/jquery.themepunch.revolution.min.js" %}"></script>
+    <script src="{% static "site/showbizpro/js/jquery.themepunch.showbizpro.min.js" %}"></script>
+{% endblock extrajs %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %} Erro 404 {% endblock %}
+
+{% block extracss %}{% endblock extracss %}
+
+{% block content %}
+
+    <!-- Blog Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>Ooops!</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-sixteen">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="error-template text-center">
+                        <h1>404</h1>
+                        <h2>Pagina Não Encontrada!</h2>
+                        <p>Desculpe, ocorreu um erro, a página solicitada não foi encontrada!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Navi -->
+    <div class="container-fluid module-background-one modul-bt-one hidden-xs">
+        <div class="container modul-space-fifteen">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="pagination pagination-default">
+                        <a href="/" class="btn btn-default previous">                            
+                            VOLTAR PARA A HOME
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock content%}
+
+{% block extrajs %}{% endblock extrajs %}

@@ -1,0 +1,31 @@
+é mesmo    {% load static from staticfiles %}
+    
+    <div class="tp-banner-container">
+        <div class="tp-banner">
+            <ul>
+                {% for slide in slideshow %}
+                    <!-- SLIDE ONE  -->
+                    <li data-transition="random-static" data-slotamount="5" data-masterspeed="1000">
+                        <!-- MAIN IMAGE -->                    
+                        <img src="{{ slide.imagem.url }}" alt="{{ slide.titulo }} {{ slide.subtitulo }}" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+    
+                        <div class="tp-caption mediumlarge_light_black customin customout hidden-xs" data-x="center" data-hoffset="0" data-y="center" data-voffset="-50" data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;" data-customout="x:0;y:0;z:400;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="1000" data-start="1700" data-easing="Back.easeInOut" data-endeasing="Back.easeInOut" data-endspeed="1000" style="z-index: 11">
+                            {{ slide.titulo }}
+                        </div>
+    
+                        <div class="tp-caption medium_light_black customin customout hidden-xs" data-x="center" data-hoffset="0" data-y="center" data-voffset="0" data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;" data-customout="x:0;y:0;z:400;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="1000" data-start="2000" data-easing="Back.easeInOut" data-endeasing="Back.easeInOut" data-endspeed="1000" style="z-index: 11">
+                            {{ slide.subtitulo }}
+                        </div>
+    
+                        <div class="tp-caption medium_light_black customin customout" data-x="center" data-hoffset="0" data-y="center" data-voffset="60" data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;" data-customout="x:0;y:0;z:400;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="1000" data-start="2300" data-easing="Back.easeInOut" data-endeasing="Back.easeInOut" data-endspeed="1000" style="z-index: 11">
+                            <a href="{{ slide.link }}" target="_blank" class="btn btn-slider-black btn-lg">
+                                Acesse
+                            </a>
+                        </div>    
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="tp-bannertimer"></div>
+        </div>
+    </div>
+    

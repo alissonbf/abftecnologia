@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block seotags %} {{ block.super }} {% endblock %}
+
+{% block title %} {{ block.super }} {% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static "site/rs-plugin/css/settings.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "site/showbizpro/css/settings.css" %}" media="screen" />
+{% endblock extracss %}
+
+{% block content %}
+    <!-- Slideshow  -->
+        {% include "home/slideshow.html" %}
+    <!-- Fim Slideshow  -->    
+    
+    <!-- Services Modul 7 -->
+        {% include "home/servico.html" %}
+    <!-- Fim Services Modul 7 -->
+    
+    <!-- Vantagem -->
+        {% include "home/vantagem.html" %}
+    <!-- Fim Vantagem -->
+
+    <!-- Trabalho -->
+        {% include "home/trabalho.html" %}
+    <!-- Fim Trabalho -->
+    
+{% endblock content%}
+
+{% block extrajs %}
+    <!-- Slider Options -->
+    <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('.tp-banner').revolution(
+                     {
+                             delay:9000,
+                             startwidth:1170,
+                             startheight:600,
+                             hideThumbs:10
+                     });
+                       
+                jQuery('#example6').showbizpro({
+                    dragAndScroll: "off",
+                    visibleElementsArray: [4, 3, 1, 1],
+                    carousel: "on",
+                    entrySizeOffset: 0,
+                    allEntryAtOnce: "off",
+                    rewindFromEnd: "off",
+                    autoPlay: "off",
+                    delay: 2000,
+                    speed: 500
+                });
+            });
+    </script>
+    
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+    <script src="{% static "site/rs-plugin/js/jquery.themepunch.plugins.min.js" %}"></script>
+    <script src="{% static "site/rs-plugin/js/jquery.themepunch.revolution.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "site/showbizpro/js/jquery.themepunch.showbizpro.min.js" %}"></script>
+{% endblock extrajs %}

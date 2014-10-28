@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block seotags %}
+    <meta name="description" content="Agradecemos a você por demonstrar interesse em nossos serviços." /> 
+    <meta name="keywords" content="website, desenvolvimento, site, marketing de relacionamento, marketing de conteudo, programação, abf, tecnologia, paracatu, sp, são paulo, minas gerais, rio de janeiro, belo horizonte, empresários, estratégica, serviço, empresário,"/>
+    <meta name="robots" content="index, follow">
+{% endblock %}
+
+{% block title %} Contato | {{ block.super }} {% endblock %}
+
+{% block extracss %}{% endblock extracss %}
+
+{% block content %}
+   <!-- Blog Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>Contato</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">                
+        {{ contato.0.codigo|safe }}
+    </div>
+
+    <!-- Contact -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-seventeen">
+            <div class="row">
+
+                <!-- Services One -->
+                <div class="col-xs-12 col-sm-6 col-md-3 modul-phone">
+                    <div class="modul-services-one mso-icon">
+                        <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-space">
+                            <i class="fa fa-location-arrow fa-2x hi-icon"></i>
+                        </div>
+                        <h6>Endereço</h6>
+                        <p>{{ contato.0.endereco }}</p>
+                    </div>
+                </div>
+
+                <!-- Services Two -->
+                <div class="col-xs-12 col-sm-6 col-md-3 modul-phone">
+                    <div class="modul-services-one mso-icon">
+                        <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-space">
+                            <i class="fa fa-phone fa-2x hi-icon"></i>
+                        </div>
+                        <h6>Telefone</h6>
+                        <p>
+                            {% for telefone in contato.0.telefones.all %}
+                                {{telefone.telefone}} <br>
+                            {% endfor %}
+                        </p>
+                            
+                    </div>
+                </div>
+
+                <!-- Services Three -->
+                <div class="col-xs-12 col-sm-6 col-md-3 modul-phone">
+                    <div class="modul-services-one mso-icon">
+                        <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-space">
+                            <i class="fa fa-envelope fa-2x hi-icon"></i>
+                        </div>
+                        <h6>E-Mail</h6>
+                        <p>
+                            {% for email in contato.0.emails.all %}
+                                {{email.email}} <br>
+                            {% endfor %}                            
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Services Four -->
+                <div class="col-xs-12 col-sm-6 col-md-3 modul-phone">
+                    <div class="modul-services-one mso-icon">
+                        <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9b mso-icon-space">
+                            <i class="fa fa-anchor fa-2x hi-icon"></i>
+                        </div>
+                        <h6>Website</h6>
+                        <p>
+                            {% for site in contato.0.sites.all %}
+                                {{site.site}} <br>
+                            {% endfor %}                             
+                        </p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid module-background-one modul-bt-one" data-speed="5" data-type="background">
+        <div class="container modul-space-eightteen">        
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h4>Formulário de contato</h4>                    
+                    <hr>
+                    <!-- Leave Comment -->
+                    {% if mensagem %}
+                        <div class="alert alert-success">
+                            <button type="button" class="close fui-cross" data-dismiss="alert"></button>
+                            {{ mensagem }}
+                        </div>                    
+                    {% endif %}                    
+                    <form action="{% url 'contato_index' %}" method="post">{% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="leave-comment">
+                            <div class="row comment-forms">
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        {% if form.nome.errors %}
+                                            {% for error in form.nome.errors %}                                                
+                                                <div class="alert alert-error">
+                                                    <button type="button" class="close fui-cross" data-dismiss="alert"></button>                                                    
+                                                    {{ error }}
+                                                </div>                                                 
+                                            {% endfor %}
+                                        {% endif %}                                    
+                                        <div class="input-group input-group">                                                                                       
+                                            <span class="input-group-addon">
+                                                <span class="fui-user"></span>
+                                            </span>                                            
+                                            {{ form.nome }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% if form.email.errors %}
+                                            {% for error in form.email.errors %}                                                
+                                                <div class="alert alert-error">
+                                                    <button type="button" class="close fui-cross" data-dismiss="alert"></button>                                                    
+                                                    {{ error }}
+                                                </div>                                                 
+                                            {% endfor %}
+                                        {% endif %}                                                                            
+                                        <div class="input-group input-group">
+                                            <span class="input-group-addon">
+                                                <span class="fui-mail"></span>
+                                            </span>
+                                            {{ form.email }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% if form.site.errors %}
+                                            {% for error in form.site.errors %}                                                
+                                                <div class="alert alert-error">
+                                                    <button type="button" class="close fui-cross" data-dismiss="alert"></button>                                                    
+                                                    {{ error }}
+                                                </div>                                                 
+                                            {% endfor %}
+                                        {% endif %}                                         
+                                        <div class="input-group input-group">
+                                            <span class="input-group-addon">
+                                                <span class="fui-link"></span>
+                                            </span>
+                                            {{ form.site }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        {% if form.mensagem.errors %}
+                                            {% for error in form.mensagem.errors %}                                                
+                                                <div class="alert alert-error">
+                                                    <button type="button" class="close fui-cross" data-dismiss="alert"></button>                                                    
+                                                    {{ error }}
+                                                </div>                                                 
+                                            {% endfor %}
+                                        {% endif %}                                        
+                                        {{ form.mensagem }}
+                                    </div>
+                                    <div class="form-group pull-right">                                        
+                                        <button type="submit" class="btn btn-info">Enviar</button>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content%}
+
+{% block extrajs %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50743006-1', 'abftecnologia.com.br');
+      ga('send', 'pageview');
+
+    </script>
+{% endblock extrajs %}

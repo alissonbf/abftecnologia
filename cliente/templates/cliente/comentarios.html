@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% load cropping %}
+
+{% block title %} Meus Comentários | {{ block.super }}{% endblock %}
+
+{% block extracss %}{% endblock extracss %}
+
+{% block content %}
+
+    <!-- Blog Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>Meus Comentários</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-fourteen">
+            <div class="row">
+                <div class="col-md-12">                                                          
+                    <div class="table-responsive">
+	        	<table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th>COMENTÁRIO</th>
+                                <th>POST</th>
+                                <th>STATUS</th>
+                            </tr>
+                            {% for comentario in comentarios %}
+                              <tr>
+                                <td>{{ comentario.texto }}</td>
+                                <td>
+                                    <a href="{{ comentario.post.get_absolute_url }}">
+                                        {{ comentario.post.titulo }}</td>
+                                    </a>
+                                <td>{{ comentario.status }}</td>
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock content%}
+
+{% block extrajs %}{% endblock extrajs %}

@@ -1,0 +1,49 @@
+{% extends "base_landingpage.html" %}
+
+{% load static from staticfiles %}
+
+{% block seotags %}
+    <meta name="description" content="{{ artigo.descricao }}" /> 
+    <meta name="keywords" content="website, desenvolvimento, site, marketing de relacionamento, marketing de conteudo, programação, abf, tecnologia, paracatu, sp, são paulo, minas gerais, rio de janeiro, belo horizonte, empresários, estratégica, serviço, empresário,"/>
+    <meta name="robots" content="index, follow">
+{% endblock %}
+
+{% block title %} {{ artigo.titulo }} | {{ block.super }}{% endblock %}
+
+{% block extracss %}{% endblock extracss %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="container-fluid parallax-three modul-bt-one" data-speed="5" data-type="background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="big-title">
+                        <h1>{{ artigo.titulo }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Advert Module Three -->
+    <div class="container-fluid modul-bt-one">
+        <div class="container modul-space-eight">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-xs-12 col-md-8">
+                    <div class="advert-two-title">
+                        <h1>Obrigado pelo download</h1>
+                        <p>Desejamos que este {{ artigo.categoria.titulo }} seja de muita ajuda!</p>                        
+                        <a href="{{ artigo.arquivo.url }}" target="_blank" class="btn btn-primary advert-button-nine">Download</a>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+{% endblock content%}
+
+{% block extrajs %} {% endblock extrajs %}
